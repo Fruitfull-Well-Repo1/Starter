@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Reply Copilot</title>
+    <style>
+      body {
+        width: 260px;
+        margin: 0;
+        padding: 14px 16px;
+        font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #1f2328;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0 0 6px;
+      }
+      p {
+        margin: 0 0 12px;
+        color: #57606a;
+        font-size: 13px;
+      }
+      button {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #d0d7de;
+        background: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        font: 500 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      button:hover {
+        background: #f6f8fa;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reply Copilot</h1>
+    <p>Open a Practice Better message thread and click the ✨ button in the corner to draft.</p>
+    <button id="open-options">Open settings</button>
+    <script>
+      document.getElementById("open-options").addEventListener("click", () => {
+        chrome.runtime.openOptionsPage();
+      });
+    </script>
+  </body>
+</html>
