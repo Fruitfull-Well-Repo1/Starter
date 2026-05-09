@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Practice Better Reply Copilot — Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Practice Better Reply Copilot</h1>
+      <p class="lede">
+        Drafts client replies using Claude. Your API key is stored locally in Chrome
+        and only sent to <code>api.anthropic.com</code>.
+      </p>
+
+      <div class="warn">
+        <strong>HIPAA notice.</strong> Client messages may contain PHI. Before using this with
+        real client messages, sign Anthropic's Business Associate Agreement
+        (support@anthropic.com) and confirm your plan is covered.
+      </div>
+
+      <form id="settings-form">
+        <label>
+          <span>Anthropic API key</span>
+          <input type="password" name="apiKey" autocomplete="off" placeholder="sk-ant-..." />
+        </label>
+
+        <label>
+          <span>Model</span>
+          <select name="model">
+            <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (recommended)</option>
+            <option value="claude-opus-4-7">Claude Opus 4.7 (highest quality)</option>
+            <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (fastest)</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Voice / system prompt</span>
+          <textarea name="systemPrompt" rows="12" placeholder="Leave blank to use the default."></textarea>
+          <small>Describe your tone, common phrases, and any hard rules (e.g. never quote prices).</small>
+        </label>
+
+        <label>
+          <span>Optional: thread CSS selector(s)</span>
+          <input type="text" name="threadSelector" placeholder="e.g. .message-thread, [data-testid=conversation]" />
+          <small>Comma-separated. Only needed if the auto-detector misses the thread.</small>
+        </label>
+
+        <div class="row">
+          <button type="submit" class="primary">Save</button>
+          <span id="save-status"></span>
+        </div>
+      </form>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

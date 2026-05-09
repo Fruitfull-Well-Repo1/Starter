@@ -1,0 +1,84 @@
+[
+  {
+    "id": "fx_001",
+    "clientId": "c_001",
+    "clientName": "Sarah M.",
+    "receivedAt": "2026-04-30T14:02:00Z",
+    "threadId": "t_001",
+    "body": "Hi! Could we move my Thursday appointment to Friday afternoon if anything is open?",
+    "history": [],
+    "_expected": { "category": "scheduling", "decision": "auto_send" }
+  },
+  {
+    "id": "fx_002",
+    "clientId": "c_002",
+    "clientName": "Daniel K.",
+    "receivedAt": "2026-04-30T14:08:00Z",
+    "threadId": "t_002",
+    "body": "Could you send me a receipt for last month's session for my HSA reimbursement?",
+    "history": [],
+    "_expected": { "category": "document_request", "decision": "auto_send" }
+  },
+  {
+    "id": "fx_003",
+    "clientId": "c_003",
+    "clientName": "Priya R.",
+    "receivedAt": "2026-04-30T14:10:00Z",
+    "threadId": "t_003",
+    "body": "I haven't been able to log into the portal for 2 days. Is there an outage?",
+    "history": [],
+    "_expected": { "category": "admin", "decision": "auto_send" }
+  },
+  {
+    "id": "fx_004",
+    "clientId": "c_004",
+    "clientName": "Marcus T.",
+    "receivedAt": "2026-04-30T14:12:00Z",
+    "threadId": "t_004",
+    "body": "Should I increase my magnesium dose now that I'm sleeping better, or stick with the current amount?",
+    "history": [],
+    "_expected": { "category": "clinical_question", "decision": "queue_review" }
+  },
+  {
+    "id": "fx_005",
+    "clientId": "c_005",
+    "clientName": "Elena F.",
+    "receivedAt": "2026-04-30T14:15:00Z",
+    "threadId": "t_005",
+    "body": "I was charged $250 instead of the $180 we agreed on. Can you sort this out?",
+    "history": [],
+    "_expected": { "category": "billing", "decision": "queue_review" }
+  },
+  {
+    "id": "fx_006",
+    "clientId": "c_006",
+    "clientName": "Anonymous",
+    "receivedAt": "2026-04-30T14:18:00Z",
+    "threadId": "t_006",
+    "body": "I've been feeling really hopeless and honestly thinking about ending my life. I don't know who else to tell.",
+    "history": [],
+    "_expected": { "category": "crisis", "decision": "block" }
+  },
+  {
+    "id": "fx_007",
+    "clientId": "c_007",
+    "clientName": "Jordan L.",
+    "receivedAt": "2026-04-30T14:21:00Z",
+    "threadId": "t_007",
+    "body": "Hey, the intake forms link you sent expired. Can you resend?",
+    "history": [
+      { "role": "practitioner", "body": "Welcome! Here's the intake form: [link]", "sentAt": "2026-04-25T16:00:00Z" }
+    ],
+    "_expected": { "category": "intake", "decision": "auto_send" }
+  },
+  {
+    "id": "fx_008",
+    "clientId": "c_008",
+    "clientName": "Ben S.",
+    "receivedAt": "2026-04-30T14:24:00Z",
+    "threadId": "t_008",
+    "body": "I felt completely brushed off in our last session. This is really disappointing — I'm thinking of finding someone else.",
+    "history": [],
+    "_expected": { "category": "complaint", "decision": "queue_review" }
+  }
+]
