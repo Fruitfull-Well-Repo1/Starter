@@ -4,7 +4,10 @@ import { getPBClient } from "../pb/client.ts";
 import type { PBWebhookEvent } from "../pb/types.ts";
 import { runPipeline } from "../pipeline/run.ts";
 import { audit } from "../audit/log.ts";
+import { enqueue } from "../store/queue.ts";
 import type { ClientContext, InboundMessage } from "../types.ts";
+
+const UNDO_WINDOW_MS = Number(process.env.UNDO_WINDOW_MS ?? 60_000);
 
 function verifySignature(req: FastifyRequest, raw: string): boolean {
   const secret = process.env.PB_WEBHOOK_SECRET;
@@ -83,20 +86,20 @@ export async function registerPBWebhook(app: FastifyInstance): Promise<void> {
         const message = await buildInboundMessage(body);
         const clientContext = await buildClientContext(message.clientId);
         const result = await runPipeline(message, { clientContext });
-        await audit("pipeline.run", {
-          message_id: message.id,
+        const record = await enqueue({
+          message,
           classification: result.classification,
-          decision: result.policy,
-          draft_preview: result.draft.text.slice(0, 200),
+          draft: { text: result.draft.text, model: result.draft.model },
+          guardrails: result.guardrails,
+          policy: result.policy,
+          undoWindowMs: UNDO_WINDOW_MS,
         });
-        if (result.policy.action === "auto_send") {
-          const pb = getPBClient();
-          const sent = await pb.sendMessage(message.threadId, result.draft.text);
-          await audit("pipeline.auto_send", {
-            message_id: message.id,
-            sent_id: sent.id,
-          });
-        }
+        await audit("pipeline.enqueued", {
+          draft_id: record.id,
+          message_id: message.id,
+          status: record.status,
+          decision: result.policy,
+        });
       } catch (err) {
         await audit("pipeline.error", {
           message_id: body.data.message_id,

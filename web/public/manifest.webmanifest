@@ -1,0 +1,17 @@
+{
+  "name": "PB Reply Inbox",
+  "short_name": "PB Inbox",
+  "description": "Approve, edit, or reject AI-drafted replies to client messages.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
